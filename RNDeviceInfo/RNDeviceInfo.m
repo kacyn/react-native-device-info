@@ -157,6 +157,17 @@ RCT_EXPORT_MODULE()
   return [self.deviceName isEqual: @"Simulator"];
 }
 
+- (bool) isTablet
+{
+  return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+}
+
+- (bool) isSecurityEnabled
+{
+  LAContext *context = [[LAContext alloc] init];
+  return ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]);
+}
+
 - (NSDictionary *)constantsToExport
 {
     UIDevice *currentDevice = [UIDevice currentDevice];
@@ -180,6 +191,8 @@ RCT_EXPORT_MODULE()
              @"userAgent": self.userAgent,
              @"timezone": self.timezone,
              @"isEmulator": @(self.isEmulator),
+             @"isTablet": @(self.isTablet),
+             @"isSecurityEnabled": @(self.isSecurityEnabled),
              };
 }
 

@@ -59,4 +59,10 @@ module.exports = {
   isEmulator: function() {
     return RNDeviceInfo.isEmulator;
   },
+  isTablet: function() {
+    return RNDeviceInfo.isTablet;
+  },
+  isSecurityEnabled: function () {
+    return RNDeviceInfo.isSecurityEnabled;
+  },
 };
